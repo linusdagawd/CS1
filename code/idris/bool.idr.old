@@ -1,0 +1,79 @@
+module bool
+import pair
+
+data bool = true|false
+
+id_bool: bool -> bool
+id_bool b = b
+
+not: bool -> bool
+not false = true
+not true = false
+
+constTrue: bool -> bool
+--constTrue true = true
+--constTrue false = true
+constTrue _ = true
+
+constFalse: bool -> bool
+--constFalse true = false
+--constFalse false = false
+constFalse _ = false
+
+--Homework Due 9/25
+
+--Problem #1
+andp: pair bool bool -> bool
+andp (mkPair true true) = true
+andp (mkPair a b) = false
+
+--Problem #2
+orp: pair bool bool -> bool
+orp (mkPair false false) = false
+orp (mkPair a b) = true
+
+--Problem #3
+nandp: pair bool bool -> bool
+nandp p = not $ andp p
+
+--Problem #4
+xorp: pair bool bool -> bool
+xorp (mkPair true true) = false
+xorp (mkPair false false) = false
+xorp (mkPair a b) = true
+
+
+--Exam Problem #2: There are 16 possible ways to fill in the result column for
+--a truth table for a binary boolean function and thus there are exactly 16
+--such functions, and no more.
+
+--Problem #4a
+pand: bool -> bool -> bool
+pand true = id_bool
+pand false = constFalse
+
+--Problem #4b
+por: bool -> bool -> bool
+por true = constTrue
+por false = id_bool
+
+--Problem #4c
+pxor: bool -> bool -> bool
+pxor true = not
+pxor false = id_bool
+
+--Problem #4d
+pnand: bool -> bool -> bool
+pnand true = not
+pnand false = constTrue
+
+and: bool -> bool -> bool
+and true true = true
+and _ _ = false
+
+uf: bool -> bool
+uf = (and true)
+
+or: bool -> bool -> bool
+or false false = false
+or _ _ = true
